@@ -1,0 +1,185 @@
+<nz-card class="shadow-lg mb-5">
+    <div nz-row [nzGutter]="16" class="shadow-sm pb-2 pt-1 card-report">
+        <div nz-col class="gutter-row" [nzSpan]="4">
+            <div class="inner-box">
+
+                <button nz-button nz-dropdown [nzDropdownMenu]="throwDrop" nzType="primary" class="btn-throw">
+                        Lançamentos
+                        <i nz-icon nzType="down"></i>
+                    </button>
+                <nz-dropdown-menu #throwDrop="nzDropdownMenu">
+                    <ul nz-menu class="pl-1">
+                        <li nz-menu-item>
+                            <a>1st item</a>
+                        </li>
+                        <li nz-menu-item>
+                            <a>2nd item</a>
+                        </li>
+                        <li nz-menu-item>
+                            <a>3rd item</a>
+                        </li>
+                    </ul>
+                </nz-dropdown-menu>
+
+            </div>
+
+        </div>
+
+        <div nz-col class="gutter-row" [nzSpan]="5">
+            <div class="inner-box">
+
+                <button nz-button nz-dropdown [nzDropdownMenu]="bankDrop" nzType="primary" class="btn-throw">
+                        Bancos
+                        <i nz-icon nzType="down"></i>
+                    </button>
+                <nz-dropdown-menu #bankDrop="nzDropdownMenu">
+                    <ul nz-menu>
+                        <li nz-submenu nzTitle="Santander">
+                            <ul class="pt-1 pb-1 pl-1 pr-3">
+                                <li nz-menu-item>3rd menu item</li>
+                                <li nz-menu-item>4th menu item</li>
+                            </ul>
+                        </li>
+                        <li nz-submenu nzTitle="Itau">
+                            <ul class="pt-1 pb-1 pl-1 pr-3">
+                                <li nz-menu-item>3rd menu item</li>
+                                <li nz-menu-item>4th menu item</li>
+                            </ul>
+                        </li>
+                        <li nz-submenu nzTitle="Bradesco">
+                            <ul class="pt-1 pb-1 pl-1 pr-3 mb-1">
+                                <li nz-menu-item>3rd menu item</li>
+                                <li nz-menu-item>4th menu item</li>
+                            </ul>
+                        </li>
+                        <li nz-submenu nzTitle="Caixa">
+                            <ul class="pt-1 pb-1 pl-1 pr-3">
+                                <li nz-menu-item>3rd menu item</li>
+                                <li nz-menu-item>4th menu item</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nz-dropdown-menu>
+
+            </div>
+
+        </div>
+
+        <div nz-col class="gutter-row" [nzSpan]="8">
+            <div class="inner-box">
+                <nz-range-picker></nz-range-picker>
+            </div>
+        </div>
+
+        <div nz-col class="gutter-row" [nzSpan]="4">
+
+            <div class="inner-box">
+                <button nz-button nz-dropdown [nzDropdownMenu]="accDrop" nzType="primary" class="btn-accounts">
+                        Contas
+                        <i nz-icon nzType="down"></i>
+                    </button>
+                <nz-dropdown-menu #accDrop="nzDropdownMenu">
+                    <ul nz-menu class="pl-1">
+                        <li nz-menu-item>
+                            <a>1st item</a>
+                        </li>
+                        <li nz-menu-item>
+                            <a>2nd item</a>
+                        </li>
+                        <li nz-menu-item>
+                            <a>3rd item</a>
+                        </li>
+                    </ul>
+                </nz-dropdown-menu>
+            </div>
+
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="2">
+
+            <div class="inner-box">
+                <button nz-button nz-dropdown [nzDropdownMenu]="cardDrop" nzType="primary" class="btn-cards">
+                        Cartões
+                        <i nz-icon nzType="down"></i>
+                    </button>
+                <nz-dropdown-menu #cardDrop="nzDropdownMenu">
+                    <ul nz-menu class="pl-1">
+                        <li nz-menu-item>
+                            <a>1st item</a>
+                        </li>
+                        <li nz-menu-item>
+                            <a>2nd item</a>
+                        </li>
+                        <li nz-menu-item>
+                            <a>3rd item</a>
+                        </li>
+                    </ul>
+                </nz-dropdown-menu>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-2 shadow-sm pb-2 pt-1 table-report">
+        <nz-table #nestedTable [nzData]="listOfParentData" [nzPageSize]="10">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Dia</th>
+                    <th>Mes</th>
+                    <th>Ano</th>
+                    <th>A pagar</th>
+                    <th>Pagamentos</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-template ngFor let-data [ngForOf]="nestedTable.data">
+                    <tr>
+                        <td [(nzExpand)]="data.expand"></td>
+                        <td>{{ data.day }}</td>
+                        <td>{{ data.month }}</td>
+                        <td>{{ data.year }}</td>
+                        <td>{{ data.onePay }}</td>
+                        <td>{{ data.paid }}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr [nzExpand]="data.expand">
+                        <nz-table #innerTable [nzData]="listOfChildrenData" nzSize="middle" [nzShowPagination]="false">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Descrição</th>
+                                    <th>A Pagar</th>
+                                    <th>Pagamento</th>
+                                    <th>Codigo</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of innerTable.data">
+                                    <td>{{ data.name }}</td>
+                                    <td>{{ data.description }}</td>
+                                    <td>{{ data.onePayDay }}</td>
+                                    <td>{{ data.paidDay }}</td>
+                                    <td>{{ data.code }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>|</td>
+                                    <td>Total Pago:</td>
+                                    <td>6.500,00</td>
+                                </tr>
+                            </tbody>
+                        </nz-table>
+                    </tr>
+                </ng-template>
+            </tbody>
+        </nz-table>
+    </div>
+
+</nz-card>
