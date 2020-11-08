@@ -8,6 +8,23 @@ import { ChildrenItemData, ParentItemData } from './report';
 })
 export class ReportComponent implements OnInit {
 
+  
+  isLoadingOne = false;
+
+  private counter = 3;
+
+  loadOne(): void {
+    var month = Array("Janeiro","Fevereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Septembro",
+      "Outubro","Novembro","Dezembro");
+    var eArr = month;
+
+    console.log(eArr);
+
+  }
+
+ 
+
+
   listOfParentData: ParentItemData[] = [];
   listOfChildrenData: ChildrenItemData[] = [];
 
