@@ -16,7 +16,7 @@ export class ReportComponent implements OnInit {
     for (let i = 0; i < 3; ++i) {
       this.listOfParentData.push({
         key: i,
-        day: 'Segunda-Feira',
+        day: '01',
         month: 'Novembro',
         year: '2020',
         onePay: '7.500.00',

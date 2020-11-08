@@ -18,3 +18,11 @@
 .table-report {
     padding: 5px;
 }
+
+.paidFull {
+    background-color: #eeeeee;
+}
+
+.paidFull td {
+    font-weight: 600;
+}
